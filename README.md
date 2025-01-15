@@ -1,0 +1,1 @@
+Projeto simples para transcrever arquivos de áudio e extrair palavras chaves.
