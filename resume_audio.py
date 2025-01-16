@@ -5,7 +5,10 @@ Entry point file. Usage: python resume_audio.py <audio_path>
 from sys import argv, exit
 from whisper import load_model
 
+from .configs import ConfigObj
 
+
+configs = ConfigObj()
 
 def main():
     if len(argv) < 2:
@@ -22,7 +25,7 @@ def main():
 
 
 def transcribe_audio(audio_path: str) -> str:
-    w_model = load_model("small")
+    w_model = load_model(configs.transcription_model)
 
     return w_model.transcribe(audio_path, fp16=False)["text"]
 
