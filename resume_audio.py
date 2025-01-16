@@ -22,6 +22,12 @@ def main():
         help="If present espects <audio_path> to be a .txt file to use as transcription.",
         action="store_true",
     )
+    parser.add_argument(
+        "-t", "--just-transcription",
+        dest="just_transcription",
+        help="If present, return only the transcription.",
+        action="store_true",
+    )
 
     args = parser.parse_args()
 
@@ -34,7 +40,10 @@ def main():
     else:
         audio_transcript = transcribe_audio(args.audio_path)
 
-    print(audio_transcript)
+    if args.just_transcription:
+        print(audio_transcript)
+    else:  
+        pass
 
 
 def transcribe_audio(audio_path: str) -> str:
