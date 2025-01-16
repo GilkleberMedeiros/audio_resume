@@ -2,24 +2,24 @@
 Entry point file. Usage: python resume_audio.py <audio_path>
 """
 
-from sys import argv, exit
+from argparse import ArgumentParser
 from whisper import load_model
 
-from .configs import ConfigObj
+from configs import ConfigObj
 
 
 configs = ConfigObj()
 
 def main():
-    if len(argv) < 2:
-        print("Usage: python resume_audio.py <audio_path>")
-        exit(1)
-    elif len(argv) > 2:
-        print("WARNNING: You passed more than one argument, only the first one will be used.")
+    parser = ArgumentParser(prog="resume_audio.py", description="Resume audios with AI.")
+    parser.add_argument(
+        "audio_path", 
+        help="Path to the audio file to be resumed."
+    )
 
-    audio_path = argv[1]
+    args = parser.parse_args()
 
-    audio_transcript = transcribe_audio(audio_path)
+    audio_transcript = transcribe_audio(args.audio_path)
 
     print(audio_transcript)
 
