@@ -7,6 +7,8 @@ import os
 import getpass
 
 
+__configs_cache = None
+
 class ConfigObj:
     def __init__(self) -> None:
         self.transcription_model = "small"
@@ -18,9 +20,16 @@ class ConfigObj:
         self.model_top_p = None
         self.model_top_k = None
 
+def get_configs() -> ConfigObj:
+    global __configs_cache
+
+    if not __configs_cache:
+        __configs_cache = ConfigObj()
+
+    return __configs_cache
 
 def get_llm_model_api_key(model_provider: str = "") -> SecretStr:
-    configs = ConfigObj()
+    configs = get_configs()
 
     api_key = os.environ.get(configs.api_key_envvar_name, False)
 

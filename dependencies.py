@@ -6,10 +6,10 @@ from langchain.prompts import PromptTemplate
 from langchain_google_genai.llms import GoogleGenerativeAI
 from whisper import load_model
 
-from configs import ConfigObj, get_llm_model_api_key
+from configs import get_configs, get_llm_model_api_key
 
 
-configs = ConfigObj()
+configs = get_configs()
 api_key = get_llm_model_api_key("Google")
 
 llm_model = GoogleGenerativeAI(

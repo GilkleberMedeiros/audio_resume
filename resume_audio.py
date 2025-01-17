@@ -4,11 +4,8 @@ Entry point file. Usage: python resume_audio.py <audio_path>
 
 from argparse import ArgumentParser
 
-from configs import ConfigObj
 from dependencies import transcribe_audio, resume_text
 
-
-configs = ConfigObj()
 
 def main():
     parser = ArgumentParser(prog="resume_audio.py", description="Resume audios with AI.")
