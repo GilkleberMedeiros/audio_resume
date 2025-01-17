@@ -29,9 +29,7 @@ def main():
         action="store_true",
     )
 
-    print("starting parsing args...")
     args = parser.parse_args()
-    print("args parsed...")
 
     if args.fake_transcription:
         if not args.audio_path.endswith(".txt"):
