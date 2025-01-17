@@ -1,3 +1,7 @@
+"""
+Dependencies for resume_audio.py
+"""
+
 from langchain.prompts import PromptTemplate
 from langchain_google_genai.llms import GoogleGenerativeAI
 from whisper import load_model
@@ -45,7 +49,7 @@ prompt_template = PromptTemplate(
 
 def resume_text(text: str) -> str:
     """
-    Resume text and extract key words using the model.
+    Resume text and extract key words using an AI model.
     """
     chain = prompt_template | llm_model
     response = chain.invoke({"text": text})
