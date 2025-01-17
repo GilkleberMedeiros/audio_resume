@@ -8,8 +8,9 @@ you're set. The command/entry point is `resume_audio.py`.
 ## Usage
 ### resume_audio command
 Just run `python resume_audio.py audio_file_path` and the audio will be resumed and key words extracted to your
-terminal. This command use whisper AI locally to transcript the audio, so be careful if you don't think you 
-have a computer powerful enough. In the other hand, it use Google AI remote models to resume and extract the kw.
+terminal. Audio file needs to be an `.mp3` or `.wav` file. This command use whisper AI locally to 
+transcript the audio, so be careful if you don't think you have a computer powerful enough. 
+In the other hand, it use Google AI remote models to resume and extract the kw.
 If you wanna know more about the command, just run `python resume_audio.py --help`.
 
 
