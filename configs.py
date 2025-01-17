@@ -1,30 +1,38 @@
 """
 File that disponibilize the configurations of the project.
 """
-from pydantic import SecretStr
+from pydantic import SecretStr, BaseModel
 
 import os
 import getpass
+import json
+from typing import Any
 
 
 __configs_cache = None
 
-class ConfigObj:
-    def __init__(self) -> None:
-        self.transcription_model = "small"
+class LlmModelConfig(BaseModel):
+    name: str
+    temperature: float
+    top_p: float | None
+    top_k: int | None
 
-        self.api_key_envvar_name = "GOOGLE_AISTUDIO_API_KEY"
 
-        self.model_name = "gemini-pro"
-        self.model_temperature = 0.7
-        self.model_top_p = None
-        self.model_top_k = None
+class ConfigObj(BaseModel):
+    api_key_envvar_name: str
+
+    llm_model: LlmModelConfig
+
+    transcription_model: str
 
 def get_configs() -> ConfigObj:
     global __configs_cache
 
+    with open("./configs.json", "r") as f:
+        json_configs = json.load(f)
+
     if not __configs_cache:
-        __configs_cache = ConfigObj()
+        __configs_cache = ConfigObj(**json_configs)
 
     return __configs_cache
 

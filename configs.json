@@ -1,0 +1,10 @@
+{
+    "llm_model": {
+        "name": "gemini-pro",
+        "temperature": 0.7,
+        "top_p": null,
+        "top_k": null
+    },
+    "transcription_model": "small",
+    "api_key_envvar_name": "GOOGLE_AISTUDIO_API_KEY"
+}

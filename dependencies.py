@@ -13,11 +13,11 @@ configs = get_configs()
 api_key = get_llm_model_api_key("Google")
 
 llm_model = GoogleGenerativeAI(
-    model=configs.model_name, 
+    model=configs.llm_model.name, 
     api_key=api_key, 
-    temperature=configs.model_temperature, 
-    top_p=configs.model_top_p, 
-    top_k=configs.model_top_k
+    temperature=configs.llm_model.temperature, 
+    top_p=configs.llm_model.top_p, 
+    top_k=configs.llm_model.top_k
 )
 
 template = """
