@@ -3,9 +3,9 @@ Entry point file. Usage: python resume_audio.py <audio_path>
 """
 
 from argparse import ArgumentParser
-from whisper import load_model
 
 from configs import ConfigObj
+from dependencies import transcribe_audio, resume_text
 
 
 configs = ConfigObj()
@@ -29,7 +29,9 @@ def main():
         action="store_true",
     )
 
+    print("starting parsing args...")
     args = parser.parse_args()
+    print("args parsed...")
 
     if args.fake_transcription:
         if not args.audio_path.endswith(".txt"):
@@ -43,13 +45,7 @@ def main():
     if args.just_transcription:
         print(audio_transcript)
     else:  
-        pass
-
-
-def transcribe_audio(audio_path: str) -> str:
-    w_model = load_model(configs.transcription_model)
-
-    return w_model.transcribe(audio_path, fp16=False)["text"]
+        resume_text(audio_transcript)
 
 
 if __name__ == "__main__":
