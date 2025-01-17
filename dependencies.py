@@ -21,11 +21,11 @@ llm_model = GoogleGenerativeAI(
 )
 
 template = """
-    Resume a text from a audio transcription and extract it key words. 
+    Resume a text from a audio transcription and extract it key words.
+    Resume what was said, and what the audio text transcript is about. 
     Structure these in the below form with "resume:" and "key words:" sections and 
     don't put the original text in the output.
     If you see any "[FAKE AUDIO]" in the start of the text, just ignore it, but do the tasks with the text.
-    If you can't resume or extract the key words from the text, please say why.
 
     TEXT: {text}
 
