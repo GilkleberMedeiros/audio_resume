@@ -6,18 +6,11 @@ from langchain.prompts import PromptTemplate
 from langchain_google_genai.llms import GoogleGenerativeAI
 from whisper import load_model
 
-import os
-import getpass
-
-from configs import ConfigObj
+from configs import ConfigObj, get_llm_model_api_key
 
 
 configs = ConfigObj()
-
-api_key = os.environ.get(configs.api_key_envvar_name, False)
-
-if not api_key:
-    api_key = getpass.getpass("Please, provide your Google API key: ")
+api_key = get_llm_model_api_key("Google")
 
 llm_model = GoogleGenerativeAI(
     model=configs.model_name, 
