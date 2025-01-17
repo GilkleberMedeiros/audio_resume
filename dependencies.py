@@ -53,6 +53,9 @@ def transcribe_audio(audio_path: str) -> str:
     """
     Transcribe audio, given an audio file path.
     """
+    if not audio_path.endswith((".mp3", ".wav")):
+        raise ValueError("Only .mp3 and .wav files are supported.")
+
     w_model = load_model(configs.transcription_model)
 
     return w_model.transcribe(audio_path, fp16=False)["text"]
